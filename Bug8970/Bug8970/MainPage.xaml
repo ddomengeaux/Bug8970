@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Bug8970"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="Bug8970.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="Blue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="126" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="49" />
+        </Grid.RowDefinitions>
+
+        <CarouselView Grid.Row="1"
+                      BackgroundColor="Black" HorizontalOptions="Fill" VerticalOptions="Fill"
+                      PeekAreaInsets="0" Margin="0"
+                      HorizontalScrollBarVisibility="Never"
+                      ItemsSource="{Binding Images}" ItemsUpdatingScrollMode="KeepItemsInView">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="0"
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <forms:CachedImage Aspect="AspectFill" Margin="0"
+                                                Source="{Binding .}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
+
+</ContentPage>
